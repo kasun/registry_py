@@ -11,17 +11,17 @@ class Registry(abc.ABC):
 
     @classmethod
     def get_all_classes(cls):
-        registry_name = cls.REGISTER_NAME
+        registry_name = cls.REGISTRY_NAME
         return list(cls._registry[registry_name].values())
 
     @classmethod
     def register(cls, registering_cls, cls_id):
-        registry_name = cls.REGISTER_NAME
+        registry_name = cls.REGISTRY_NAME
         cls._registry[registry_name][cls_id] = registering_cls
 
     @classmethod
     def get_by_id(cls, cls_id):
-        registry_name = cls.REGISTER_NAME
+        registry_name = cls.REGISTRY_NAME
         try:
             return cls._registry[registry_name][cls_id]
         except KeyError:
@@ -40,7 +40,7 @@ class Registrable:
 
 
 class ChannelRegistry(Registry):
-    REGISTER_NAME = "Channel-Registry"
+    REGISTRY_NAME = "Channel-Registry"
 
 
 class BaseChannel(Registrable, abc.ABC):
